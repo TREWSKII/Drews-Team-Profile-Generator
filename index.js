@@ -45,8 +45,7 @@ const questions = [{
     name: 'title',
 }, ]
 //we will need some sort of validation
-
-// 
+ 
 //!: write read me
 function writeToFile(fileName, data) {
     return fs.writeFile(fileName, data, function(err) {
@@ -64,7 +63,7 @@ function writeToFile(fileName, data) {
 
 // !: init program
 function init() {
-    prompt(questions)
+    inquirer.prompt(questions)
     .then(function(data){
         writeToFile("index.html",(data));
         console.log(data)
