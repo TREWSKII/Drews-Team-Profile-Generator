@@ -6,14 +6,17 @@ const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const fs = require("fs");
 const path = require("path");
-
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+const generateTeam = require("./generatehtml.js")
 const resolvesPaths = path.resolve(__dirname, "output");
 const joinsPaths = path.join(resolvesPaths, "myteam.html");
 const render = require("./src/html.js");
-const generatehtml = require('./generatehtml');
+
+teamArray = [];
+
 
 function init() {
-    const team = ['']
     function createMngr() {
         inquirer
             .prompt([
@@ -40,7 +43,7 @@ function init() {
             ])
             .then((val) => {
                 const manager = new Manager(val.name, val.id, val.email, val.officeNumber);
-                team.push(manager);
+                teamArray.push(manager);
                 //! manager card creation goes here.
                 createMenu();
             });
@@ -101,8 +104,8 @@ function addEngineer() {
             message: "What is the engineer's GitHub username?",
         }])
         .then((val) => {
-            const engineer = new Engineer(val.engineerName, val.engineerId, val.engineerEmail, val.engineerGithub);
-            console.log(engineer)
+            const engineer = new Engineer(val.engineerName, val.engineerId, val.engineerEmail, val.Github);
+            teamArray.push(engineer)
             //! manager card creation goes here.
             createMenu();
 
@@ -136,13 +139,20 @@ function addEngineer() {
             }])
             .then((val) => {
                 const intern = new Intern(val.internName, val.internId, val.internEmail, val.internSchool);
-                console.log(intern)
+                teamArray.push(intern)
                 //! manager card creation goes here.
                 createMenu();
             })
         }
+        function htmlBuilder () {
+            console.log("Team created!")
+        
+            fs.writeFileSync(outputPath, generateTeam(teamArray), "UTF-8")
+        
+        }
 createMngr();
 }
+
 
 init();
 
