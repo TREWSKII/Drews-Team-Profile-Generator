@@ -1,0 +1,27 @@
+{
+  "name": "02-challenge",
+  "version": "1.0.0",
+  "description": "## Your Task",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --verbose _test_/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TREWSKII/Drews-Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TREWSKII/Drews-Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/TREWSKII/Drews-Team-Profile-Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^29.0.3"
+  }
+}
